@@ -16,18 +16,18 @@ def browser_init(context):
     # context.driver = webdriver.Chrome(service=service)
 
     ### OTHER BROWSERS ###
-    service = Service(executable_path='C:/Users/manic/OneDrive/Desktop/internship-project/careerist-internship/geckodriver.exe')
-    context.driver = webdriver.Firefox(service=service)
+    # service = Service(executable_path='C:/Users/manic/OneDrive/Desktop/internship-project/careerist-internship/geckodriver.exe')
+    # context.driver = webdriver.Firefox(service=service)
     # context.driver = webdriver.Safari()
 
     ### HEADLESS MODE ####
-    # options = webdriver.ChromeOptions()
-    # options.add_argument('headless')
-    # service = Service(ChromeDriverManager().install())
-    # context.driver = webdriver.Chrome(
-    #     options=options,
-    #     service=service
-    # )
+    options = webdriver.ChromeOptions()
+    options.add_argument('headless')
+    service = Service(ChromeDriverManager().install())
+    context.driver = webdriver.Chrome(
+        options=options,
+        service=service
+    )
 
     ### BROWSERSTACK ###
     # Register for BrowserStack, then grab it from https://www.browserstack.com/accounts/settings
@@ -45,9 +45,9 @@ def browser_init(context):
     # options.set_capability('bstack:options', bstack_options)
     # context.driver = webdriver.Remote(command_executor=url, options=options)
 
-
     context.driver.wait = WebDriverWait(context.driver, 15)
-    context.driver.maximize_window()
+    # context.driver.maximize_window()
+    context.driver.set_window_size(1280, 720)
     context.driver.implicitly_wait(4)
     context.app = Application(context.driver)
 
