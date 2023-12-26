@@ -37,12 +37,20 @@ def browser_init(context, scenario_name):
     url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
 
     options = Options()
+    # bstack_options = {
+    #     'os': 'Windows',
+    #     'osVersion': '11',
+    #     'browserName': 'Chrome',
+    #     'sessionName': scenario_name
+    # }
     bstack_options = {
-        'os': 'Windows',
-        'osVersion': '11',
-        'browserName': 'Chrome',
-        'sessionName': scenario_name
+        "os": "OS X",
+        "osVersion": "Sonoma",
+        "browserName": "Safari",
+        "browserVersion": "17.0",
+        "sessionName": scenario_name
     }
+
     options.set_capability('bstack:options', bstack_options)
     context.driver = webdriver.Remote(command_executor=url, options=options)
 
