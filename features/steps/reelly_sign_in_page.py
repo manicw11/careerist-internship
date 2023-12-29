@@ -9,5 +9,5 @@ def verify_reelly_sign_in(context):
 
 @when('Input Reelly Username and Password')
 def input_reelly_username_and_password(context):
-    sleep(3)
+    sleep(2)
     context.app.reelly_sign_in_page.input_credentials()
