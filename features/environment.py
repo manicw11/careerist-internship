@@ -54,11 +54,23 @@ def browser_init(context, scenario_name):
     # options.set_capability('bstack:options', bstack_options)
     # context.driver = webdriver.Remote(command_executor=url, options=options)
 
-    context.driver.wait = WebDriverWait(context.driver, 15)
+    # context.driver.wait = WebDriverWait(context.driver, 15)
     # context.driver.maximize_window()
-    context.driver.set_window_size(1280, 720)
+    # context.driver.set_window_size(1280, 720)
+    # context.driver.implicitly_wait(4)
+    # context.app = Application(context.driver)
+
+    ### MOBILE EMULATION ###
+    mobile_emulation = {"deviceName": "Samsung Galaxy S20 Ultra"}
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_experimental_option("mobileEmulation", mobile_emulation)
+    context.driver = webdriver.Chrome(options=chrome_options)
+    context.driver.set_window_size(412, 915)
+    context.driver.wait = WebDriverWait(context.driver, 25)
     context.driver.implicitly_wait(4)
     context.app = Application(context.driver)
+    # context.driver = webdriver.Remote(command_executor='http://127.0.0.1:4444/wd/hub',
+    #                           desired_capabilities=chrome_options.to_capabilities())
 
 
 def before_scenario(context, scenario):
